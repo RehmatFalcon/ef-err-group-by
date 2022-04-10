@@ -33,10 +33,20 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // This Does Not Work
         var x = _context.Products
             .GroupBy(x => x.Id)
             .Select(x => new Result(x.Key))
             .Count();
+        
+        // This Works. Using Object Initializer
+        // var x = _context.Products
+        //     .GroupBy(x => x.Id)
+        //     .Select(x => new Result
+        //     {
+        //         Id = x.Key
+        //     })
+        //     .Count();
         return View();
     }
 
